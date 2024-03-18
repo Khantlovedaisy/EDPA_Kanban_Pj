@@ -9,14 +9,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
 
     // Perform basic validation
-    if ( empty($email) || empty($password)) {
-        echo '
-        <script>
-            window.location.href = "login.php";
-            alert("All fields are required");
-        </script>';
+    if ( empty($email) && empty($password) ) {
+        
+        header("Location:login.php?FieldEmpty=true");
+        exit;
+    }else if ( empty($password)) {
+        header("Location:login.php?PasswordEmpty=true");
+        exit;
+    }else if ( empty($email)){
+        header("Location:login.php?EmailEmpty=true");
         exit;
     }
+
+
 
     // Check if the user already exists in the database
     $db = new DBConnection();
@@ -38,6 +43,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             alert("This user does not exist");
         </script>';
     }
-}
+ }
 ?>
-

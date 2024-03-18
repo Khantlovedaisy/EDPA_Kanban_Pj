@@ -13,6 +13,8 @@
 <div class="loginForm">
     <form method="post" action="loginfunc.php">
         <h1 class="loginFormText">⟁ Kanban Board</h1>
+
+        
         <!-- <div class="mb-4 input-group-lg col-auto" >
             <label for="name" class="form-label">Name</label> <br>
             <input type="text" name="name" id="name" class="input-field" required >
@@ -20,17 +22,36 @@
 
         <div class="mb-4 input-group-lg col-auto" >
             <label for="email" class="form-label">Email</label>
-            <input type="email" name="email" id="email" class="input-field" required>
+            <input type="email" name="email" id="email" class="input-field" >
+            <?php
+        if(isset($_GET)) {
+            if(($_GET['EmailEmpty']??'')==true || ($_GET['FieldEmpty']??'')==true) {
+                echo '<p class="text-info">email is required</p>';
+            
+            }
+        }
+    ?>
+            
         </div>
 
         <div class="mb-4 input-group-lg col-auto" >
             <label for="password" class="form-label">Password</label>
-            <input type="password" name="password" id="password" class="input-field" required>
+            <input type="password" name="password" id="password" class="input-field" >
+            <?php
+        if(isset($_GET)) {
+            if(($_GET['PasswordEmpty']??'')==true || ($_GET['FieldEmpty']??'')==true) {
+                echo '<p class="text-info">Password is required</p>';
+            
+            }
+        }
+    ?>
         </div>
 
-        <button type="submit" class="button">Register</button>
+        <button type="submit" class="button">LOGIN</button>
     
     </form>
+
+
 </div>
 </body>
 </html>
